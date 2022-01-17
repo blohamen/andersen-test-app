@@ -1,7 +1,9 @@
 import React, { useState } from 'react';
 
+import { StepData } from '../constants';
+
 interface EmailStepProps {
-  cb: (data: object) => void;
+  cb: (data: StepData) => void;
 }
 
 export const EmailStep: React.FC<EmailStepProps> = ({ cb }) => {

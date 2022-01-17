@@ -1,7 +1,9 @@
 import React, { useState } from 'react';
 
+import { StepData } from '../constants';
+
 interface AgeStepProps {
-  cb: (data: object) => void;
+  cb: (data: StepData) => void;
 }
 
 export const AgeStep: React.FC<AgeStepProps> = ({ cb }) => {

@@ -1,28 +1,32 @@
 import React, { useState } from 'react';
 
+import { StepData } from '../constants';
+
 interface FirstLastNamesStepProps {
-  cb: (data: object) => void;
+  cb: (data: StepData) => void;
 }
 
 export const FirstLastNamesStep: React.FC<FirstLastNamesStepProps> = ({
   cb,
 }) => {
-  const [data, setData] = useState({
-    firstName: '',
-    lastName: '',
-  });
+  const [firstName, setFirstName] = useState('');
+  const [lastName, setLastName] = useState('');
 
-  const handleChange = (field: string) => ({
+  const handleFirstNameChange = ({
     target: { value },
-  }: React.ChangeEvent<HTMLInputElement>) =>
-    setData((prevState) => ({
-      ...prevState,
-      [field]: value,
-    }));
+  }: React.ChangeEvent<HTMLInputElement>) => {
+    setFirstName(value);
+  };
+
+  const handleLastNameChange = ({
+    target: { value },
+  }: React.ChangeEvent<HTMLInputElement>) => {
+    setLastName(value);
+  };
 
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    cb(data);
+    cb({ firstName, lastName });
   };
 
   return (
@@ -33,8 +37,8 @@ export const FirstLastNamesStep: React.FC<FirstLastNamesStepProps> = ({
           name="firstName"
           type="text"
           required
-          onChange={handleChange('firstName')}
-          value={data.firstName}
+          onChange={handleFirstNameChange}
+          value={firstName}
         />
       </div>
       <div>
@@ -43,8 +47,8 @@ export const FirstLastNamesStep: React.FC<FirstLastNamesStepProps> = ({
           name="lastName"
           type="text"
           required
-          onChange={handleChange('lastName')}
-          value={data.lastName}
+          onChange={handleLastNameChange}
+          value={lastName}
         />
       </div>
       <button type="submit">Next</button>

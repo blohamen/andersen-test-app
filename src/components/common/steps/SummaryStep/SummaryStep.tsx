@@ -1,10 +1,11 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-import { InsuranceIds } from '../../BuyFlow';
+import { InsuranceIds } from '../../../BuyFlow';
+import { StepData } from '../constants';
 
 interface SummaryStepProps {
-  collectedData: object;
+  collectedData: StepData;
   insuranceType: InsuranceIds;
 }
 
